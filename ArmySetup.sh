@@ -1,6 +1,8 @@
 #!/bin/bash
 sudo apt update
-sudo apt install -y docker.io
+if ! which docker > /dev/null; then
+  sudo apt install -y docker.io
+fi
 sudo systemctl enable docker --now
 docker
 # sudo usermod -aG docker $USER
