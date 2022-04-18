@@ -15,8 +15,8 @@ sudo systemctl unmask docker.socket
 sudo systemctl start docker.service
 if [ ! $? -eq 0 ]; then
   # if systemctl not loaded SERVICE has to be used.  This is true for WSL
-  sudo service dockerBig  start
-fi
+    sudo service docker start
+    fi
 sudo chmod 666 /var/run/docker.sock
 sudo docker run hello-world
 docker run -it --rm --pull always ghcr.io/porthole-ascend-cinnamon/mhddos_proxy -t 2000 --itarmy --debug
