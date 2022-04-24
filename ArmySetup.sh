@@ -1,11 +1,21 @@
 #!/bin/bash
+#
+# Uncomment the next line for line-by-line debugging
+#
+# trap 'read -p "run: $BASH_COMMAND"' DEBUG&
+
 sudo apt update
 if ! which docker > /dev/null; then
   sudo apt install -y docker.io
 fi
 sudo systemctl enable docker --now
-# docker
+
+# This requires a reboot when setting the docker group
 # sudo usermod -aG docker $USER
+
+#
+# This approach doesn't require a reboot when adding the $USER to the docker group
+#
 newgrp docker
 printf '%s\n' "deb https://download.docker.com/linux/debian bullseye stable" | sudo tee /etc/apt/sources.list.d/docker-ce.list ; curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/docker-ce-archive-keyring.gpg
 # sudo apt update
