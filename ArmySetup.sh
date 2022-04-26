@@ -29,4 +29,4 @@ if [ ! $? -eq 0 ]; then
     fi
 sudo chmod 666 /var/run/docker.sock
 sudo docker run hello-world
-docker run -it --rm --pull always ghcr.io/porthole-ascend-cinnamon/mhddos_proxy -t 8000 --itarmy --debug
+docker run -it --rm --pull always ghcr.io/porthole-ascend-cinnamon/mhddos_proxy -t 8000 --itarmy --vpn --debug
