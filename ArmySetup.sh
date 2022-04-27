@@ -9,6 +9,11 @@
 #
 #docker pull ghcr.io/arriven/db1000n
 #docker run –rm -it ghcr.io/arriven/db1000n
+#
+# or
+#
+# curl "https://raw.githubusercontent.com/Arriven/db1000n/main/install.sh" | bash
+# ./db1000n
 
 sudo apt update
 if ! which docker > /dev/null; then
