@@ -4,6 +4,12 @@
 #
 # trap 'read -p "run: $BASH_COMMAND"' DEBUG&
 
+#
+# Notes here on how to run db1000n
+#
+#docker pull ghcr.io/arriven/db1000n
+#docker run –rm -it ghcr.io/arriven/db1000n
+
 sudo apt update
 if ! which docker > /dev/null; then
   sudo apt install -y docker.io
