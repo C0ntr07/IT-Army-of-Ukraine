@@ -16,7 +16,9 @@
 # ./db1000n
 
 sudo apt update
-if ! which docker > /dev/null; then
+which docker
+result=$?
+if [ $result = 1 ] then
   sudo apt install -y docker.io
 fi
 sudo systemctl enable docker --now
@@ -25,9 +27,14 @@ sudo systemctl enable docker --now
 # sudo usermod -aG docker $USER
 
 #
-# This approach doesn't require a reboot when adding the $USER to the docker group
+# This approach doesn't require a reboot when adding the $USER to the docker group but requires a password
 #
-newgrp docker
+# newgrp docker
+
+
+
+
+
 printf '%s\n' "deb https://download.docker.com/linux/debian bullseye stable" | sudo tee /etc/apt/sources.list.d/docker-ce.list ; curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/docker-ce-archive-keyring.gpg
 # sudo apt update
 sudo apt install -y docker-ce docker-ce-cli containerd.io
@@ -40,4 +47,6 @@ if [ ! $? -eq 0 ]; then
     fi
 sudo chmod 666 /var/run/docker.sock
 sudo docker run hello-world
-docker run -it --rm --pull always ghcr.io/porthole-ascend-cinnamon/mhddos_proxy -t 8000 --itarmy --vpn --debug
+# docker run -it --rm --pull always ghcr.io/porthole-ascend-cinnamon/mhddos_proxy -t 8000 --itarmy --vpn --debug
+screen -S "mhddos_proxy_docker" docker run -it --rm --pull always --net=host ghcr.io/porthole-ascend-cinnamon/mhddos_proxy --vpn --itarmy --lang EN --copies 1
+
